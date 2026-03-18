@@ -144,7 +144,7 @@ vite.config.ts.timestamp-*
 .vite/
 
 #Prisma
-/generated/prisma
+backend/generated/prisma
 
 #Project specification files
 .proj-spec
