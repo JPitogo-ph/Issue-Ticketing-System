@@ -7,7 +7,7 @@ import routes from './routes/index.js';
 
 const app = express();
 
-app.use(helmet);
+app.use(helmet());
 //app.use(cors({origin: 'http://localhost:5173'})); //TODO: Configure CORS later
 app.use(morgan('dev'));
 app.use(express.json());
