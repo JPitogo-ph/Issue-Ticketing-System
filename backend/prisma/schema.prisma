@@ -45,7 +45,7 @@ model User {
   passwordHash String
   name         String
   role         Role     @default(reporter)
-  created_at   DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   reportedTickets Ticket[]      @relation("Reporter")
   assignedTickets Ticket[]      @relation("Assignee")
