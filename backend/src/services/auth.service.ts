@@ -4,7 +4,6 @@ import prisma from '../config/db.js';
 import { type LoginInput, type SignupInput, type JwtPayload } from '../types/auth.types.js';
 import { AppError } from '../types/AppError.js';
 import crypto, { sign } from 'node:crypto';
-import { use } from 'react';
 
 const SALT_ROUNDS = 12; //12 is apparently industry standard, said to add 250ms per hash.
 const TOKEN_TTL = '12h'; //Just enough for workday, maybe change to 24
