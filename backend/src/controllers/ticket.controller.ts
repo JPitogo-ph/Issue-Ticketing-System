@@ -19,7 +19,7 @@ export async function listTickets(req: Request, res:Response, _next: NextFunctio
     res.status(200).json(result);
 }
 
-export async function updateticket(req: Request, res:Response, _next: NextFunction): Promise<void> {
+export async function updateTicket(req: Request, res:Response, _next: NextFunction): Promise<void> {
     const dto = UpdateTicketSchema.parse(req.body);
     const ticket = await TicketService.updateTicket(req.user!, req.params.id as string, dto);
     res.status(200).json({ticket});
@@ -27,5 +27,5 @@ export async function updateticket(req: Request, res:Response, _next: NextFuncti
 
 export async function deleteTicket(req: Request, res:Response, _next: NextFunction): Promise<void> {
     await TicketService.deleteTicket(req.user!, req.params.id as string);
-    res.status(204);
+    res.status(204).send();
 }
