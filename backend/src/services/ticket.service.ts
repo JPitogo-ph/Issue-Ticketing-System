@@ -144,9 +144,9 @@ export async function deleteTicket(actor: JwtPayload, id: string) {
     await findOrFail(id);
 
     if (actor.role !== Role.admin) throw new AppError('Only admins can delete tickets', 403);
-
-    await prisma.ticket.delete({where: {id}});
+    
     await logActivity(id, actor.sub, 'ticket-deleted', {})
+    await prisma.ticket.delete({where: {id}});
 }
 
 //Helper functions
