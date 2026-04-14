@@ -8,6 +8,12 @@ generator client {
   output   = "../generated/prisma"
 }
 
+generator json {
+  provider = "prisma-json-types-generator"
+  namespace = "PrismaJson"
+  
+}
+
 datasource db {
   provider = "postgresql"
 }
@@ -45,7 +51,7 @@ model User {
   passwordHash String
   name         String
   role         Role     @default(reporter)
-  created_at   DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   reportedTickets Ticket[]      @relation("Reporter")
   assignedTickets Ticket[]      @relation("Assignee")
@@ -86,11 +92,12 @@ model Comment {
 model ActivityLog {
   id        String   @id @default(uuid())
   action    String
+  /// [ActivityMeta]
   meta      Json?
   createdAt DateTime @default(now())
 
-  ticketId String
-  ticket   Ticket @relation(fields: [ticketId], references: [id])
+  ticketId String?
+  ticket   Ticket? @relation(fields: [ticketId], references: [id], onDelete: SetNull)
   actorId  String
   actor    User   @relation(fields: [actorId], references: [id])
 }

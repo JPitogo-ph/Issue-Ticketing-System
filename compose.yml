@@ -22,10 +22,9 @@ services:
     volumes:
       - ./backend:/app
       - node_modules:/app/node_modules
-    command: npm run dev
+    command: sh -c "npm install && npm run dev"
     depends_on:
       - postgres
-
   pgadmin:
     image: dpage/pgadmin4
     restart: unless-stopped
